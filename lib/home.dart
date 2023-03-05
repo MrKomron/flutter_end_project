@@ -1,10 +1,50 @@
-import 'package:flutter/material.dart';
-
-class Home extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-
-    return Container(color: Colors.purple,);
-  }
-
-}
+// import 'package:flutter/material.dart';
+//
+//
+// void main() {
+//   runApp(AppRoot());
+// }
+//
+// class AppRoot extends StatelessWidget {
+//   Widget build(BuildContext buildContext) => MaterialApp(
+//     home: Scaffold(
+//       body: AppTree(),
+//       appBar: AppBar(title: Text("Video afspelen"),),
+//     ),
+//   );
+// }
+//
+// class AppTree extends StatefulWidget{
+//   _AppTreeState createState() => _AppTreeState();
+// }
+//
+// class _AppTreeState extends State<AppTree> {
+//   VideoPlayerController videoController = VideoPlayerController.asset("assets/video/bees.mp4");
+//
+//   void initState() {
+//     videoController.setLooping(true);
+//     videoController.initialize();
+//     super.initState();
+//   }
+//
+//   Widget build(BuildContext context) {
+//     bool isVisible = true;
+//
+//     return ListView(
+//         children: <Widget>[
+//           AspectRatio(
+//               aspectRatio: 640 / 360,  // breedte gedeeld door hoogte
+//               child: VideoPlayer(videoController)
+//           ),
+//           ElevatedButton(
+//             onPressed: () {
+//               setState(() {
+//                 videoController.value.isPlaying ? videoController.pause() : videoController.play();
+//               });
+//             },
+//             child: videoController.value.isPlaying ? Icon(Icons.pause, size: 60) : Icon(Icons.play_arrow, size: 60),
+//           ),
+//         ]
+//     );
+//   }
+// }
