@@ -28,18 +28,30 @@ class QuizApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 5,
+        length: 4,
         child: Scaffold(
             appBar: AppBar(
 
-              title: Image.asset("assets/images/logo.png", scale: 4,),
+              title: Row(
+                children: [
+                  Image.asset(
+                    'assets/images/logo.png',
+                    scale: 4,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text('Medical Center'),
+                ],
+              ),
+
 
             ),
             bottomNavigationBar: TabBar(
                 indicatorColor: Colors.blueAccent,
                 labelColor: Colors.blueAccent,
                 tabs: [
-                  Tab(icon:Icon(Icons.home, size: 35,)),
+
                   Tab(icon:Icon(Icons.people, size: 35,)),
                   Tab(icon:Icon(Icons.phone, size: 35,)),
                   Tab(icon:Icon(Icons.logout, size: 35,)),
@@ -49,7 +61,7 @@ class QuizApp extends StatelessWidget {
             ),
             body: TabBarView(
               children: [
-                Home(),
+
                 Team(),
                 Contact(),
                 Login(),
