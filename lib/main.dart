@@ -12,7 +12,6 @@ void main() {
 class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'MedicalCenter',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
