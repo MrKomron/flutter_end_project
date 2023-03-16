@@ -79,6 +79,8 @@ class MedicalCenter extends StatelessWidget {
                 Contact(),
                 Settings(),
               ],
-            )));
+            )
+        )
+    );
   }
 }
