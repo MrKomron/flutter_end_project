@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Contact extends StatelessWidget{
+class Contact extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-    return Container(color: Colors.yellow,);
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(child: Text('Contact')),
+      ),
+      body: SingleChildScrollView(
+      ),
+    );
   }
-
 }

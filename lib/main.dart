@@ -57,12 +57,12 @@ class MedicalCenter extends StatelessWidget {
                   )),
                   Tab(
                       icon: Icon(
-                    Icons.phone,
+                    Icons.logout,
                     size: 35,
                   )),
                   Tab(
                       icon: Icon(
-                    Icons.logout,
+                    Icons.phone,
                     size: 35,
                   )),
                   Tab(
@@ -75,8 +75,8 @@ class MedicalCenter extends StatelessWidget {
               children: [
                 HomePage(),
                 Team(),
-                Contact(),
                 Login(),
+                Contact(),
                 Settings(),
               ],
             )));

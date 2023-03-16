@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Login extends StatelessWidget{
+class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-    return Container(color: Colors.green,);
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(child: Text('Login')),
+      ),
+      body: SingleChildScrollView(
+      ),
+    );
   }
-
 }

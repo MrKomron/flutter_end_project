@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Settings extends StatelessWidget{
+class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-    return Container(color: Colors.blue,);
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(child: Text('Settings')),
+      ),
+      body: SingleChildScrollView(
+      ),
+    );
   }
-
 }
