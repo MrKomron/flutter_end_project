@@ -57,36 +57,46 @@ class _ContactPageState extends State<ContactPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
               SizedBox(height: 16.0),
-          Text(
-            'Phone',
-            style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 8.0),
-          Text(
-            '+1 555-1234-567',
-            style: TextStyle(fontSize: 18.0),
-          ),
-          SizedBox(height: 16.0),
-          Text(
-            'Website',
-            style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 8.0),
-          InkWell(
+          Center(
             child: Text(
-              'www.example.com',
-              style: TextStyle(
-                fontSize: 18.0,
-                color: Colors.blue,
-                decoration: TextDecoration.underline,
-              ),
+              'Phone',
+              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
             ),
-            onTap: () => _launchURL(),
+          ),
+          Center(child: SizedBox(height: 8.0)),
+          Center(
+            child: Text(
+              '+1 555-1234-567',
+              style: TextStyle(fontSize: 18.0),
+            ),
+          ),
+          Center(child: SizedBox(height: 16.0)),
+          Center(
+            child: Text(
+              'Website',
+              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+            ),
+          ),
+          Center(child: SizedBox(height: 8.0)),
+          Center(
+            child: InkWell(
+              child: Text(
+                'www.example.com',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+              onTap: () => _launchURL(),
+            ),
           ),
           SizedBox(height: 16.0),
-          Text(
-            'Send us a message',
-            style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+          Center(
+            child: Text(
+              'Send us a message',
+              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+            ),
           ),
           SizedBox(height: 16.0),
 
