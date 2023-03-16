@@ -12,19 +12,19 @@ void main() {
 class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Med',
+      title: 'MedicalCenter',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: QuizApp(),
+      home: MedicalCenter(),
     );
   }
 }
 
 
 
-class QuizApp extends StatelessWidget {
+class MedicalCenter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
