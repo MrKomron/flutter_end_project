@@ -76,7 +76,7 @@ class MedicalCenter extends StatelessWidget {
                 HomePage(),
                 Team(),
                 Login(),
-                Contact(),
+                ContactPage(),
                 Settings(),
               ],
             )
