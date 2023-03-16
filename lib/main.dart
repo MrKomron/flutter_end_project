@@ -61,7 +61,7 @@ class MedicalCenter extends StatelessWidget {
             body: TabBarView(
               children: [
 
-                Team(),
+                HomePage(),
                 Contact(),
                 Login(),
                 Settings(),
