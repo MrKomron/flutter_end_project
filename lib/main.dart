@@ -21,16 +21,13 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
-
 class MedicalCenter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 4,
+        length: 5,
         child: Scaffold(
             appBar: AppBar(
-
               title: Row(
                 children: [
                   Image.asset(
@@ -43,33 +40,45 @@ class MedicalCenter extends StatelessWidget {
                   Text('Medical Center'),
                 ],
               ),
-
-
             ),
             bottomNavigationBar: TabBar(
                 indicatorColor: Colors.blueAccent,
                 labelColor: Colors.blueAccent,
                 tabs: [
-
-                  Tab(icon:Icon(Icons.people, size: 35,)),
-                  Tab(icon:Icon(Icons.phone, size: 35,)),
-                  Tab(icon:Icon(Icons.logout, size: 35,)),
-                  Tab(icon:Icon(Icons.settings, size: 35,)),
-
-                ]
-            ),
+                  Tab(
+                      icon: Icon(
+                    Icons.home,
+                    size: 35,
+                  )),
+                  Tab(
+                      icon: Icon(
+                    Icons.people,
+                    size: 35,
+                  )),
+                  Tab(
+                      icon: Icon(
+                    Icons.phone,
+                    size: 35,
+                  )),
+                  Tab(
+                      icon: Icon(
+                    Icons.logout,
+                    size: 35,
+                  )),
+                  Tab(
+                      icon: Icon(
+                    Icons.settings,
+                    size: 35,
+                  )),
+                ]),
             body: TabBarView(
               children: [
-
                 HomePage(),
+                Team(),
                 Contact(),
                 Login(),
                 Settings(),
-
               ],
-            )
-        )
-    );
+            )));
   }
 }
-
