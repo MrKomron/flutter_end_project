@@ -5,34 +5,34 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hospital Name'),
+        title: Center(child: Text('Home')),
       ),
-      body: Column(
-        children: [
-          Container(
-            height: 200.0,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/hospital.jpg'),
-                fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 200.0,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/hospital.jpg'),
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            child: Center(
-              child: Text(
-                'Welcome to our Hospital',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
+              child: Center(
+                child: Text(
+                  'Welcome to our Hospital',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
-          ),
-          SizedBox(height: 20.0),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 26.0),
+            SizedBox(height: 20.0),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30.0,vertical: 50),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -44,44 +44,44 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 20.0),
-                  Expanded(
-                    child: GridView.count(
-                      crossAxisCount: 1,
-                      crossAxisSpacing: 10.0,
-                      mainAxisSpacing: 10.0,
-                      children: [
-                        _buildServiceItem(
-                          context,
-                          Icons.healing,
-                          'Orthopedics',
-                          'Our orthopedic specialists are experts in the treatment of bone and joint disorders, from sports injuries to arthritis.',
-                        ),
-                        _buildServiceItem(
-                          context,
-                          Icons.favorite,
-                          'Cardiology',
-                          'Our cardiology department is staffed by highly trained professionals who provide expert care for a range of heart conditions, from arrhythmia to heart attack.',
-                        ),
-                        _buildServiceItem(
-                          context,
-                          Icons.content_paste,
-                          'Laboratory',
-                          'We provide a full range of laboratory services, from routine blood tests to complex genetic testing.',
-                        ),
-                        _buildServiceItem(
-                          context,
-                          Icons.local_hospital,
-                          'Emergency',
-                          'Our emergency department is open 24/7 to provide immediate care for life-threatening injuries and illnesses.',
-                        ),
-                      ],
-                    ),
+                  GridView.count(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    crossAxisCount: 1,
+                    crossAxisSpacing: 10.0,
+                    mainAxisSpacing: 10.0,
+                    children: [
+                      _buildServiceItem(
+                        context,
+                        Icons.healing,
+                        'Orthopedics',
+                        'Our orthopedic specialists are experts in the treatment of bone and joint disorders, from sports injuries to arthritis.',
+                      ),
+                      _buildServiceItem(
+                        context,
+                        Icons.favorite,
+                        'Cardiology',
+                        'Our cardiology department is staffed by highly trained professionals who provide expert care for a range of heart conditions, from arrhythmia to heart attack.',
+                      ),
+                      _buildServiceItem(
+                        context,
+                        Icons.content_paste,
+                        'Laboratory',
+                        'We provide a full range of laboratory services, from routine blood tests to complex genetic testing.',
+                      ),
+                      _buildServiceItem(
+                        context,
+                        Icons.local_hospital,
+                        'Emergency',
+                        'Our emergency department is open 24/7 to provide immediate care for life-threatening injuries and illnesses.',
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -106,6 +106,7 @@ class HomePage extends StatelessWidget {
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+
           children: [
             Icon(
               icon,
