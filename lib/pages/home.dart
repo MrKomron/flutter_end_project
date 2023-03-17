@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'video.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -10,26 +11,7 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              height: 200.0,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/hospital.jpg'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Center(
-                child: Text(
-                  'Welcome to our Hospital',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
+            VideoWidget(),
             SizedBox(height: 20.0),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30.0,vertical: 50),

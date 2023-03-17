@@ -19,7 +19,7 @@
 // }
 //
 // class _AppTreeState extends State<AppTree> {
-//   VideoPlayerController videoController = VideoPlayerController.asset("assets/video/Studio_Project.mp4");
+//   VideoPlayerController videoController = VideoPlayerController.asset("assets/video/hospital.mp4");
 //
 //   void initState() {
 //     videoController.setLooping(true);
