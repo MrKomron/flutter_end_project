@@ -66,7 +66,7 @@ class _ContactPageState extends State<ContactPage> {
           Center(child: SizedBox(height: 8.0)),
           Center(
             child: Text(
-              '+1 555-1234-567',
+              '+1 123-456-789',
               style: TextStyle(fontSize: 18.0),
             ),
           ),
