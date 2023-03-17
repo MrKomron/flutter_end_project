@@ -1,28 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
+import '../components/player.dart';
 
 void main() {
-  runApp(AppRoot());
+  runApp(Meditaion());
 }
 
-class AppRoot extends StatelessWidget {
-  Widget build(BuildContext buildContext) => MaterialApp(
-    home: Scaffold(
-      body: AppTree(),
-      appBar: AppBar(title: Text("Titel van de app"),),
-    ),
-  );
-}
-
-class AppTree extends StatelessWidget {
-  final AudioPlayer audioSpeler = AudioPlayer();
-
-  Widget build(BuildContext context) {
-    return Center(
-        child: ElevatedButton(
-            onPressed: () { audioSpeler.play(AssetSource('audio/holiday-yuriybespalov.mp3'), volume: 1); },
-            child: Text('Speel muziek', textScaleFactor: 2)
-        )
+class Meditaion extends StatelessWidget {
+  Widget build(BuildContext buildContext){
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(child: Text("Meditaion")),
+      ),
+      body: Player(),
     );
-  }
+    }
 }

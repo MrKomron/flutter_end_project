@@ -16,7 +16,6 @@ class Doctor {
 
 void main() {
   runApp(MaterialApp(
-    title: 'Doctor List',
     home: Team(),
   ));
 }
@@ -93,7 +92,7 @@ class Team extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Doctors'),
+        title: Center(child: Text('Doctors')),
       ),
       body: ListView.builder(
         itemCount: doctors.length,

@@ -37,9 +37,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   url_launcher: ^6.0.0
   provider: ^6.0.1
-
-  chewie: ^1.4.0
-  carousel_slider: ^4.2.1
   video_player: ^2.5.1
   audioplayers: ^3.0.1
 
@@ -78,6 +75,22 @@ flutter:
     - assets/musics/music1.mp3
     - assets/musics/music2.mp3
     - assets/musics/music3.mp3
+    - assets/images/bird1.jpg
+    - assets/images/gecko.jpg
+    - assets/images/iguana.jpg
+    - assets/images/ijsvogel.jpg
+    - assets/images/kolibrie.jpg
+    - assets/images/komodovaraan.jpg
+    - assets/images/oehoe.jpg
+    - assets/images/8circle.jpg
+    - assets/images/IWontRunfromIt.jpg
+    - assets/images/NothingArrived.jpg
+    - assets/images/LadyMadonna.jpg
+    - assets/audio/holiday-yuriybespalov.mp3
+    - assets/audio/8circle.mp3
+    - assets/audio/IWontRunfromIt.mp3
+    - assets/audio/NothingArrived.mp3
+    - assets/audio/LadyMadonna.mp3
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

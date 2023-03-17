@@ -48,7 +48,7 @@ class _ContactPageState extends State<ContactPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Contact Us'),
+        title: Center(child: Text('Contact Us')),
       ),
       body: SingleChildScrollView(
         child: Padding(
