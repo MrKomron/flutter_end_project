@@ -41,6 +41,7 @@ dependencies:
   chewie: ^1.4.0
   carousel_slider: ^4.2.1
   video_player: ^2.5.1
+  audioplayers: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -74,6 +75,9 @@ flutter:
     - assets/images/doctor3.png
     - assets/videos/hospital.mp4
     - assets/videos/bees.mp4
+    - assets/musics/music1.mp3
+    - assets/musics/music2.mp3
+    - assets/musics/music3.mp3
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
