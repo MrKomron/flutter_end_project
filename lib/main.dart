@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import './pages/home.dart';
 import './pages/team.dart';
-import './pages/settings.dart';
+import './pages/meditaion.dart';
 import './pages/login.dart';
 import './pages/contact.dart';
 
