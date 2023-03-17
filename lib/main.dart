@@ -67,7 +67,7 @@ class MedicalCenter extends StatelessWidget {
                   )),
                   Tab(
                       icon: Icon(
-                    Icons.settings,
+                    Icons.more_horiz,
                     size: 35,
                   )),
                 ]),
