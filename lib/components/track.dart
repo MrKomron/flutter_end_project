@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 class Track {
   String title;
-  String artist;
-  int year;
+
   String album;
   String genre;
   Image? artwork = null;
@@ -11,7 +10,7 @@ class Track {
   bool isPlaying = false;
   bool hasStarted = false;
 
-  Track(this.title, this.artist, this.year, this.album, this.genre);
+  Track(this.title, this.album, this.genre);
 
   void setArtworkByFile(String artworkFile) {
     artwork = Image.asset(artworkFile);

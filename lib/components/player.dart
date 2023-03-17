@@ -15,10 +15,9 @@ class _PlayerState extends State<Player> {
 
   @override
   void initState() {
-    add("8 Circle", "Bon Iver", 2016, "22, A Million", "Folk/Electronic", "music1");
-    add("I Won't Run From It", "Big Red Machine", 2018, "Big Red Machine", "Electronic/Pop", "IWontRunfromIt");
-    add("Nothing Arrived", "Villagers", 2013, "{Awayland}", "Folk/Rock", "NothingArrived");
-    add("Lady Madonna", "The Beatles", 1968, "Lady Madonna", "Pop", "LadyMadonna");
+    add("Meditation 1",  "Nature, Rain", "music1");
+    add("Meditation 2",  "Birds, Nature", "music2");
+    add("Meditation 3",   "Water, Birds, Thunder, Frogs", "music3");
     audioSpeler.onPositionChanged.listen((position) => setState(() {
       _position = position;
     }));
@@ -28,8 +27,8 @@ class _PlayerState extends State<Player> {
     super.initState();
   }
 
-  void add(String title, String artist, int year, String album, String genre, String filename) {
-    Track track = Track(title, artist, year, album, genre);
+  void add(String title,String album, String filename) {
+    Track track = Track(title,   album, filename);
     track.setArtworkByFile("assets/images/" + filename + ".jpg");
     track.setFile("musics/" + filename + ".mp3");
     tracks.add(track);
@@ -40,7 +39,6 @@ class _PlayerState extends State<Player> {
       maakTrackRij(tracks[0]),
       maakTrackRij(tracks[1]),
       maakTrackRij(tracks[2]),
-      maakTrackRij(tracks[3]),
     ]);
   }
 
@@ -69,22 +67,14 @@ class _PlayerState extends State<Player> {
                                   text: TextSpan(
                                     text: track.title,
                                     style: TextStyle(color: Colors.black, fontWeight: FontWeight.w900),
-                                    children: <TextSpan>[
-                                      TextSpan(text: "  by ", style: TextStyle(fontSize: 11, fontWeight: FontWeight.w300)),
-                                      TextSpan(text: track.artist, style: TextStyle(fontSize: 11, fontStyle: FontStyle.italic, fontWeight: FontWeight.w300))
-                                    ],
+
                                   )))),
                       Expanded(
                           child: Container(
                               child: RichText(
                                 text: TextSpan(text: track.album, style: TextStyle(color: Colors.grey, fontSize: 16)),
                               ))),
-                      Expanded(
-                          child: Container(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: RichText(
-                                  text: TextSpan(text: track.year.toString() + "     " + track.genre, style: TextStyle(color: Colors.grey[600], fontStyle: FontStyle.italic))
-                              ))),
+
                     ]),
                   ),
                 ),
@@ -125,7 +115,7 @@ class _PlayerState extends State<Player> {
                       },
                       icon: track.isPlaying ?
                       Icon(Icons.pause, size: 40) :
-                      (track.hasStarted ? Icon(Icons.play_circle_outline, size: 40) : Icon(Icons.play_arrow, size: 40)),
+                      (track.hasStarted ? Icon(Icons.play_arrow, size: 40) : Icon(Icons.play_arrow, size: 40)),
                     ),
                   ),
                 )

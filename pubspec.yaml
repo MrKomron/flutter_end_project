@@ -91,6 +91,9 @@ flutter:
     - assets/audio/IWontRunfromIt.mp3
     - assets/audio/NothingArrived.mp3
     - assets/audio/LadyMadonna.mp3
+    - assets/images/music1.jpg
+    - assets/images/music2.jpg
+    - assets/images/music3.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
