@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_end_project/pages/register.dart';
 
 
 class Login extends StatelessWidget {
@@ -90,7 +91,7 @@ class Login extends StatelessWidget {
                     TextButton(
                       onPressed: () {Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => Container()),
+                        MaterialPageRoute(builder: (context) => RegisterScreen()),
                       );},
                       child: Text(
                         "Don't have an account? Register",

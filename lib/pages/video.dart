@@ -44,7 +44,7 @@ class VideoWidget extends StatefulWidget {
 class _VideoWidgetState extends State<VideoWidget>
     with AutomaticKeepAliveClientMixin<VideoWidget> {
   late VideoPlayerController _controller;
-  bool _isPlaying = false;
+  bool _isPlaying = true;
 
   @override
   bool get wantKeepAlive => true;
@@ -76,23 +76,23 @@ class _VideoWidgetState extends State<VideoWidget>
         children: [
           VideoPlayer(_controller),
           VideoProgressIndicator(_controller, allowScrubbing: true),
-          IconButton(
-            onPressed: () {
-              setState(() {
-                _isPlaying = !_isPlaying;
-                if (_isPlaying) {
-                  _controller.play();
-                } else {
-                  _controller.pause();
-                }
-              });
-            },
-            iconSize: 48.0,
-            icon: Icon(
-              _isPlaying ? Icons.pause : Icons.play_arrow,
-              color: Colors.white,
-            ),
-          ),
+          // IconButton(
+          //   onPressed: () {
+          //     setState(() {
+          //       _isPlaying = !_isPlaying;
+          //       if (_isPlaying) {
+          //         _controller.play();
+          //       } else {
+          //         _controller.pause();
+          //       }
+          //     });
+          //   },
+          //   iconSize: 48.0,
+          //   icon: Icon(
+          //     _isPlaying ? Icons.pause : Icons.play_arrow,
+          //     color: Colors.white,
+          //   ),
+          // ),
         ],
       ),
     );
