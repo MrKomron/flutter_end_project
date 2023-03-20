@@ -7,61 +7,47 @@ void main() {
 
 class AppRoot extends StatelessWidget {
   Widget build(BuildContext buildContext) => MaterialApp(
-    home: Scaffold(
-      body: AppTree(),
-      appBar: AppBar(title: Text("Video afspelen"),),
+    home: DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        body: TabBarView(
+          children: [
+            VideoWidget(),
+            Container(
+              child: Center(
+                child: Text('This is the second tab'),
+              ),
+            ),
+          ],
+        ),
+        appBar: AppBar(
+          bottom: TabBar(
+            tabs: [
+              Tab(icon: Icon(Icons.video_library)),
+              Tab(icon: Icon(Icons.description)),
+            ],
+          ),
+          title: Text("Video afspelen"),
+        ),
+      ),
     ),
   );
 }
 
-class AppTree extends StatefulWidget{
-  _AppTreeState createState() => _AppTreeState();
-}
-
-class _AppTreeState extends State<AppTree> {
-  VideoPlayerController videoController = VideoPlayerController.asset("assets/videos/hospital.mp4");
-
-  void initState() {
-    videoController.setLooping(true);
-    videoController.initialize();
-    super.initState();
-  }
-
-  Widget build(BuildContext context) {
-    bool isVisible = true;
-
-    return ListView(
-        children: <Widget>[
-          AspectRatio(
-              aspectRatio: 640 / 360,  // breedte gedeeld door hoogte
-              child: VideoPlayer(videoController)
-          ),
-          ElevatedButton(
-            onPressed: () {
-              setState(() {
-                videoController.value.isPlaying ? videoController.pause() : videoController.play();
-              });
-            },
-            child: videoController.value.isPlaying ? Icon(Icons.pause, size: 60) : Icon(Icons.play_arrow, size: 60),
-          ),
-        ]
-    );
-  }
-}
-
-
-
-
-
 class VideoWidget extends StatefulWidget {
-  const VideoWidget({Key? key,}) : super(key: key);
+  const VideoWidget({Key? key}) : super(key: key);
 
   @override
   _VideoWidgetState createState() => _VideoWidgetState();
 }
 
-class _VideoWidgetState extends State<VideoWidget> {
+class _VideoWidgetState extends State<VideoWidget>
+    with AutomaticKeepAliveClientMixin<VideoWidget> {
   late VideoPlayerController _controller;
+  bool _isPlaying = false;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -70,7 +56,7 @@ class _VideoWidgetState extends State<VideoWidget> {
       ..initialize().then((_) {
         setState(() {});
         _controller.setLooping(true);
-        _controller.play();
+        if (_isPlaying) _controller.play();
       });
   }
 
@@ -82,6 +68,7 @@ class _VideoWidgetState extends State<VideoWidget> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return AspectRatio(
       aspectRatio: _controller.value.aspectRatio,
       child: Stack(
@@ -89,6 +76,23 @@ class _VideoWidgetState extends State<VideoWidget> {
         children: [
           VideoPlayer(_controller),
           VideoProgressIndicator(_controller, allowScrubbing: true),
+          IconButton(
+            onPressed: () {
+              setState(() {
+                _isPlaying = !_isPlaying;
+                if (_isPlaying) {
+                  _controller.play();
+                } else {
+                  _controller.pause();
+                }
+              });
+            },
+            iconSize: 48.0,
+            icon: Icon(
+              _isPlaying ? Icons.pause : Icons.play_arrow,
+              color: Colors.white,
+            ),
+          ),
         ],
       ),
     );
