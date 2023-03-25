@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "185465533574",
-    "project_id": "flutteryasub",
-    "storage_bucket": "flutteryasub.appspot.com"
+    "project_number": "22655851682",
+    "project_id": "flutterendproject",
+    "storage_bucket": "flutterendproject.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:185465533574:android:b3f2b8964452fcd7b40d07",
+        "mobilesdk_app_id": "1:22655851682:android:833e01c33f9b65bb6c4bfb",
         "android_client_info": {
           "package_name": "com.example.flutter_end_project"
         }
       },
       "oauth_client": [
         {
-          "client_id": "185465533574-gldq647v9gsl88lirn5k0jcoe2tljq2h.apps.googleusercontent.com",
+          "client_id": "22655851682-6scsn050h714nn7910rstt4u5llotr1n.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAyKOO2Jj2j7VGoC0XDyG3-tOOd2KZjx5E"
+          "current_key": "AIzaSyANvUNW3Y9LcK5K0zU7wux4VMyCUmf7HaU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "185465533574-gldq647v9gsl88lirn5k0jcoe2tljq2h.apps.googleusercontent.com",
+              "client_id": "22655851682-6scsn050h714nn7910rstt4u5llotr1n.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
