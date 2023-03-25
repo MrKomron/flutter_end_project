@@ -1,5 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class Doctor {
@@ -16,7 +16,9 @@ class Doctor {
   });
 }
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MaterialApp(
     home: Team(),
   ));
@@ -71,31 +73,23 @@ class Team extends StatefulWidget {
 }
 
 class _TeamState extends State<Team> {
-  late DatabaseReference _doctorsRef;
+  late CollectionReference _doctorsRef;
   List<Doctor> _doctors = [];
 
   @override
   void initState() {
     super.initState();
-    _doctorsRef = FirebaseDatabase.instance.reference().child('doctors');
-    _fetchDoctors();
+    _doctorsRef = FirebaseFirestore.instance.collection('doctors');
+
   }
 
-  Future<void> _fetchDoctors() async {
-    DataSnapshot dataSnapshot = (await _doctorsRef.once()) as DataSnapshot;
-    Map<dynamic, dynamic> values = dataSnapshot.value as Map<dynamic, dynamic>;
-    if (values != null) {
-      values.forEach((key, value) {
-        _doctors.add(Doctor(
-          name: value['name'],
-          specialty: value['specialty'],
-          imageUrl: value['imageUrl'],
-          bio: value['bio'],
-        ));
-      });
-      setState(() {});
-    }
+  Future<void> uploadingData(String _name) async {
+    await FirebaseFirestore .instance.collection("doctors").add({
+      'name': _name,
+
+    });
   }
+
 
   @override
   Widget build(BuildContext context) {
