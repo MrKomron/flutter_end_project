@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_end_project/pages/register.dart';
 import './pages/home.dart';
 import './pages/team.dart';
 import './pages/meditaion.dart';
@@ -71,7 +72,9 @@ class MedicalCenter extends StatelessWidget {
                     size: 35,
                   )),
                 ]),
-            body: TabBarView(
+          body: WillPopScope(
+            onWillPop: () async => !Navigator.of(context).userGestureInProgress,
+            child: TabBarView(
               children: [
                 HomePage(),
                 Team(),
@@ -79,7 +82,8 @@ class MedicalCenter extends StatelessWidget {
                 ContactPage(),
                 Meditaion(),
               ],
-            )
+            ),
+          ),
         )
     );
   }

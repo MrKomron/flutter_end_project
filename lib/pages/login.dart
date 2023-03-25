@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_end_project/pages/register.dart';
 
-
 void main() {
   runApp(MaterialApp(
     home: Login(),
   ));
 }
 
+class Login extends StatefulWidget {
+  @override
+  _LoginState createState() => _LoginState();
+}
 
+class _LoginState extends State<Login> {
+  bool _isChecked = false;
 
-
-class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +68,14 @@ class Login extends StatelessWidget {
                           borderSide: BorderSide.none,
                         ),
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your username';
+                        }
+                        return null;
+                      },
                     ),
+
                     SizedBox(height: 20.0),
                     TextFormField(
                       decoration: InputDecoration(
@@ -86,9 +96,28 @@ class Login extends StatelessWidget {
                       obscureText: true,
                     ),
                     SizedBox(height: 30.0),
+                    Row(
+                      children: [
+                        Checkbox(
+                          value: _isChecked,
+                          onChanged: (value) {
+                            setState(() {
+                              _isChecked = value!;
+                            });
+                          },
+                        ),
+                        Text(
+                          'Remember me',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                      ],
+                    ),
                     ElevatedButton(
                       onPressed: () {
-                        print("Login is clocked");
+                        print("Login is clicked");
                       },
                       child: Text('LOGIN'),
                       style: ElevatedButton.styleFrom(
@@ -100,10 +129,12 @@ class Login extends StatelessWidget {
                     ),
                     SizedBox(height: 20.0),
                     TextButton(
-                      onPressed: () {Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => RegisterScreen()),
-                      );},
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => RegisterScreen()),
+                        );
+                      },
                       child: Text(
                         "Don't have an account? Register",
                         style: TextStyle(
@@ -121,5 +152,3 @@ class Login extends StatelessWidget {
     );
   }
 }
-
-

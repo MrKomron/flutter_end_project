@@ -15,12 +15,16 @@ class RegisterScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Registration Form'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
-      body: Form(
-        key: _formKey,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -44,15 +48,13 @@ class RegisterScreen extends StatelessWidget {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your email address';
-                    }
-                    if (!RegExp(r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$").hasMatch(value)) {
+                    } else if (!isValidEmail(value)) {
                       return 'Please enter a valid email address';
                     }
                     return null;
                   },
                 ),
                 TextFormField(
-                  obscureText: true,
                   decoration: const InputDecoration(
                     hintText: 'Enter your password',
                     labelText: 'Password *',
@@ -67,10 +69,12 @@ class RegisterScreen extends StatelessWidget {
                 TextFormField(
                   decoration: const InputDecoration(
                     hintText: 'Enter your phone number',
-                    labelText: 'Phone number *',
+                    labelText: 'Phone number*',
                   ),
                   validator: (value) {
-                    if (value != null && value.length != 10) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your phone number';
+                    } else if (!isValidPhoneNumber(value)) {
                       return 'Please enter a valid phone number';
                     }
                     return null;
@@ -83,6 +87,7 @@ class RegisterScreen extends StatelessWidget {
                       if (_formKey.currentState!.validate()) {
                         ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text('Processing Data')));
+                        Navigator.of(context).pop();
                       }
                     },
                     child: Text('Submit'),
@@ -94,5 +99,15 @@ class RegisterScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  bool isValidPhoneNumber(String input) {
+    // Check if the input is a valid phone number with 10 digits
+    return input.length == 10 && int.tryParse(input) != null;
+  }
+
+  bool isValidEmail(String input) {
+    // Check if the input is a valid email address
+    return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(input);
   }
 }

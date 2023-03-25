@@ -69,11 +69,7 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildServiceItem(BuildContext context, IconData icon, String title, String description) {
-    return GestureDetector(
-      onTap: () {
-        // TODO: navigate to service page
-      },
-      child: Container(
+    return  Container(
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10.0),
@@ -113,7 +109,7 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
+      );
+
   }
 }
