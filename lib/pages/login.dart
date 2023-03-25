@@ -1,5 +1,96 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_end_project/pages/register.dart';
+// import 'package:flutter_end_project/pages/register.dart';
+
+
+void main() {
+  runApp(MaterialApp(
+    home: Login(),
+  ));
+}
+
+class RegisterScreen extends StatelessWidget {
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (c) => Login()));
+          },
+        ),
+        title: Text('Registration Form'),
+      ),
+      body: Form(
+        key: _formKey,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              TextFormField(
+                decoration: const InputDecoration(
+                  hintText: 'Enter your full name',
+                  labelText: 'Name *',
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your name';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                decoration: const InputDecoration(
+                  hintText: 'Enter your email address',
+                  labelText: 'Email *',
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email address';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                decoration: const InputDecoration(
+                  hintText: 'Enter your password',
+                  labelText: 'Password *',
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your password';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                decoration: const InputDecoration(
+                  hintText: 'Enter your phone number',
+                  labelText: 'Phone number',
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Processing Data')));
+                    }
+                  },
+                  child: Text('Submit'),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 
 class Login extends StatelessWidget {
@@ -78,7 +169,9 @@ class Login extends StatelessWidget {
                     ),
                     SizedBox(height: 30.0),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        print("Login is clocked");
+                      },
                       child: Text('LOGIN'),
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(vertical: 20.0),
@@ -110,3 +203,5 @@ class Login extends StatelessWidget {
     );
   }
 }
+
+
