@@ -1,22 +1,28 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Doctor {
   final String name;
-  final String specialty;
-  final String imageUrl;
+  final String surname;
+  final String profession;
   final String bio;
+  final int age;
+  final String photo;
 
   Doctor({
     required this.name,
-    required this.specialty,
-    required this.imageUrl,
+    required this.surname,
+    required this.profession,
     required this.bio,
+    required this.age,
+    required this.photo,
   });
 }
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MaterialApp(
     home: Team(),
   ));
@@ -41,7 +47,7 @@ class DoctorDetailPage extends StatelessWidget {
             AspectRatio(
               aspectRatio: 16 / 9,
               child:
-              Image(image: NetworkImage(doctor.imageUrl), fit: BoxFit.cover),
+                  Image(image: NetworkImage(doctor.photo), fit: BoxFit.cover),
             ),
             SizedBox(height: 16.0),
             Text(
@@ -50,7 +56,7 @@ class DoctorDetailPage extends StatelessWidget {
             ),
             SizedBox(height: 8.0),
             Text(
-              doctor.specialty,
+              doctor.profession,
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16.0),
@@ -71,30 +77,13 @@ class Team extends StatefulWidget {
 }
 
 class _TeamState extends State<Team> {
-  late DatabaseReference _doctorsRef;
-  List<Doctor> _doctors = [];
+  late Stream<QuerySnapshot<Map<String, dynamic>>> _doctorsStream;
 
   @override
   void initState() {
     super.initState();
-    _doctorsRef = FirebaseDatabase.instance.reference().child('doctors');
-    _fetchDoctors();
-  }
-
-  Future<void> _fetchDoctors() async {
-    DataSnapshot dataSnapshot = (await _doctorsRef.once()) as DataSnapshot;
-    Map<dynamic, dynamic> values = dataSnapshot.value as Map<dynamic, dynamic>;
-    if (values != null) {
-      values.forEach((key, value) {
-        _doctors.add(Doctor(
-          name: value['name'],
-          specialty: value['specialty'],
-          imageUrl: value['imageUrl'],
-          bio: value['bio'],
-        ));
-      });
-      setState(() {});
-    }
+    _doctorsStream =
+        FirebaseFirestore.instance.collection('doctors').snapshots();
   }
 
   @override
@@ -103,27 +92,51 @@ class _TeamState extends State<Team> {
       appBar: AppBar(
         title: Center(child: Text('Doctors')),
       ),
-      body: ListView.builder(
-        itemCount: _doctors.length,
-        itemBuilder: (BuildContext context, int index) {
-          final doctor = _doctors[index];
-          return Card(
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundImage: NetworkImage(doctor.imageUrl),
-              ),
-              title: Text(doctor.name),
-              subtitle: Text(doctor.specialty),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DoctorDetailPage(doctor: doctor),
+      body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+        stream: _doctorsStream,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            List<Doctor> doctors = [];
+            snapshot.data!.docs.forEach((document) {
+              doctors.add(Doctor(
+                name: document['name'],
+                surname: document['surname'],
+                profession: document['profession'],
+                age: document['age'],
+                photo: document['photo'],
+                bio: document['bio'],
+              ));
+            });
+            return ListView.builder(
+              itemCount: doctors.length,
+              itemBuilder: (BuildContext context, int index) {
+                final doctor = doctors[index];
+                return Card(
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(doctor.photo),
+                    ),
+                    title: Text('${doctor.name}, ${doctor.surname}'),
+                    subtitle:
+                        Text('${doctor.profession}, ${doctor.age} years old'),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              DoctorDetailPage(doctor: doctor),
+                        ),
+                      );
+                    },
                   ),
                 );
               },
-            ),
-          );
+            );
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
         },
       ),
     );

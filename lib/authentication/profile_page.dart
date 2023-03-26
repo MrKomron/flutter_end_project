@@ -28,17 +28,16 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        title: Center(child: Text('Profile')),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Hello: ${_currentUser.displayName}',
+              'NAME: ${_currentUser.displayName}',
               style: Theme.of(context).textTheme.bodyText1,
             ),
-
 
 
 

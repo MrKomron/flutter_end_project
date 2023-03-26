@@ -15,20 +15,20 @@ class _PlayerState extends State<Player> {
 
   @override
   void initState() {
-    add("Meditation 1",  "Nature, Rain", "music1");
-    add("Meditation 2",  "Birds, Nature", "music2");
-    add("Meditation 3",   "Water, Birds, Thunder, Frogs", "music3");
+    add("Meditation 1", "Nature, Rain", "music1");
+    add("Meditation 2", "Birds, Nature", "music2");
+    add("Meditation 3", "Water, Birds, Thunder, Frogs", "music3");
     audioSpeler.onPositionChanged.listen((position) => setState(() {
-      _position = position;
-    }));
+          _position = position;
+        }));
     audioSpeler.onDurationChanged.listen((duration) => setState(() {
-      _duration = duration;
-    }));
+          _duration = duration;
+        }));
     super.initState();
   }
 
-  void add(String title,String album, String filename) {
-    Track track = Track(title,   album, filename);
+  void add(String title, String album, String filename) {
+    Track track = Track(title, album, filename);
     track.setArtworkByFile("assets/images/" + filename + ".jpg");
     track.setFile("musics/" + filename + ".mp3");
     tracks.add(track);
@@ -50,8 +50,11 @@ class _PlayerState extends State<Player> {
       child: Column(
         children: [
           Container(
-
-            padding: const EdgeInsets.only(bottom: 5.0, left: 10.0, right: 10.0,),
+            padding: const EdgeInsets.only(
+              bottom: 5.0,
+              left: 10.0,
+              right: 10.0,
+            ),
             child: Row(children: [
               Expanded(
                 flex: 7,
@@ -64,25 +67,28 @@ class _PlayerState extends State<Player> {
                                 textScaleFactor: 1.2,
                                 text: TextSpan(
                                   text: track.title,
-                                  style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w900),
+                                  style: TextStyle(
+                                      color: Colors.blue,
+                                      fontWeight: FontWeight.w900),
                                 )))),
                     Expanded(
                         child: Container(
                             child: RichText(
-                              text: TextSpan(text: track.album, style: TextStyle(color: Colors.grey, fontSize: 16)),
-                            ))),
+                      text: TextSpan(
+                          text: track.album,
+                          style: TextStyle(color: Colors.grey, fontSize: 16)),
+                    ))),
                   ]),
                 ),
               ),
               Expanded(
                 flex: 2,
-               child: Container(
+                child: Container(
                   child: track.artwork,
                   width: 120.0,
                   height: 120.0,
                 ),
               ),
-
               Expanded(
                 child: Container(
                   child: IconButton(
@@ -98,7 +104,7 @@ class _PlayerState extends State<Player> {
                           if (!track.hasStarted) {
                             audioSpeler.play(AssetSource(track.file!));
                             Timer.periodic(Duration(seconds: 1), (mijnTimer) {
-                              if (_position.inSeconds==_duration.inSeconds) {
+                              if (_position.inSeconds == _duration.inSeconds) {
                                 mijnTimer.cancel();
                                 setState(() {
                                   stopAll();
@@ -112,9 +118,23 @@ class _PlayerState extends State<Player> {
                         }
                       });
                     },
-                    icon: track.isPlaying ?
-                    Icon(Icons.pause, size: 40,color: Colors.blue,) :
-                    (track.hasStarted ? Icon(Icons.play_arrow, size: 40, color: Colors.blue,) : Icon(Icons.play_arrow, size: 40,color: Colors.blue,)),
+                    icon: track.isPlaying
+                        ? Icon(
+                            Icons.pause,
+                            size: 40,
+                            color: Colors.blue,
+                          )
+                        : (track.hasStarted
+                            ? Icon(
+                                Icons.play_arrow,
+                                size: 40,
+                                color: Colors.blue,
+                              )
+                            : Icon(
+                                Icons.play_arrow,
+                                size: 40,
+                                color: Colors.blue,
+                              )),
                   ),
                 ),
               )
@@ -122,20 +142,25 @@ class _PlayerState extends State<Player> {
           ),
           Container(
             height: track.hasStarted ? 7 : 1,
-            decoration: BoxDecoration(border: Border(top: BorderSide(color: Colors.grey[300]!))),
+            decoration: BoxDecoration(
+                border: Border(top: BorderSide(color: Colors.grey[300]!))),
             child: LinearProgressIndicator(
-                value: track.hasStarted && _duration.inSeconds.toDouble()>0 ? _position.inSeconds.toDouble()/_duration.inSeconds.toDouble() : 0,
+                value: track.hasStarted && _duration.inSeconds.toDouble() > 0
+                    ? _position.inSeconds.toDouble() /
+                        _duration.inSeconds.toDouble()
+                    : 0,
                 backgroundColor: Colors.white,
                 valueColor: new AlwaysStoppedAnimation<Color>(Colors.blue)),
           ),
         ],
       ),
     );
-
   }
 
   void stopAll() {
     audioSpeler.stop();
-    tracks.forEach((t) { t.stop(); });
+    tracks.forEach((t) {
+      t.stop();
+    });
   }
 }

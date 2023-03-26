@@ -6,7 +6,6 @@ import 'package:flutter_end_project/authentication/profile_page.dart';
 import '../utils/fire_auth.dart';
 import '../utils/validator.dart';
 
-
 class RegisterPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
@@ -37,28 +36,27 @@ class _RegisterPageState extends State<RegisterPage> {
         appBar: AppBar(
           title: Text('Register'),
         ),
-        body: Stack(
-          children: [
-            Positioned.fill(
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/logo.png'),
-                    fit: BoxFit.cover,
-                  ),
+        body: Stack(children: [
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/logo.png'),
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
-            Center(
-              child: SingleChildScrollView(
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20.0),
-                  padding: EdgeInsets.all(20.0),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.8),
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  child: Padding(
+          ),
+          Center(
+            child: SingleChildScrollView(
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 20.0),
+                padding: EdgeInsets.all(20.0),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.8),
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                child: Padding(
                   padding: const EdgeInsets.all(24.0),
                   child: Center(
                     child: Column(
@@ -128,7 +126,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                 controller: _passwordTextController,
                                 focusNode: _focusPassword,
                                 obscureText: true,
-                                validator: (value) => Validator.validatePassword(
+                                validator: (value) =>
+                                    Validator.validatePassword(
                                   password: value,
                                 ),
                                 decoration: InputDecoration(
@@ -163,10 +162,13 @@ class _RegisterPageState extends State<RegisterPage> {
                                                   .validate()) {
                                                 User? user = await FireAuth
                                                     .registerUsingEmailPassword(
-                                                  name: _nameTextController.text,
-                                                  email: _emailTextController.text,
+                                                  name:
+                                                      _nameTextController.text,
+                                                  email:
+                                                      _emailTextController.text,
                                                   password:
-                                                      _passwordTextController.text,
+                                                      _passwordTextController
+                                                          .text,
                                                 );
 
                                                 setState(() {
@@ -178,7 +180,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                                       .pushAndRemoveUntil(
                                                     MaterialPageRoute(
                                                       builder: (context) =>
-                                                          ProfilePage(user: user),
+                                                          ProfilePage(
+                                                              user: user),
                                                     ),
                                                     ModalRoute.withName('/'),
                                                   );
@@ -187,7 +190,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                             },
                                             child: Text(
                                               'Sign up',
-                                              style: TextStyle(color: Colors.white),
+                                              style: TextStyle(
+                                                  color: Colors.white),
                                             ),
                                           ),
                                         ),
@@ -199,11 +203,11 @@ class _RegisterPageState extends State<RegisterPage> {
                       ],
                     ),
                   ),
-          ),
                 ),
               ),
-            ),]
-        ),
+            ),
+          ),
+        ]),
       ),
     );
   }

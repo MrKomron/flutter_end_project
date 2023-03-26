@@ -44,6 +44,7 @@ dependencies:
   firebase_analytics: ^10.1.6
   firebase_auth: ^4.3.0
   firebase_database: ^10.0.16
+  syncfusion_flutter_datagrid: ^21.1.35
 
 
 

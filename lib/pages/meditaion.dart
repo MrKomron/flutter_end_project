@@ -6,12 +6,12 @@ void main() {
 }
 
 class Meditaion extends StatelessWidget {
-  Widget build(BuildContext buildContext){
+  Widget build(BuildContext buildContext) {
     return Scaffold(
       appBar: AppBar(
         title: Center(child: Text("Meditaion")),
       ),
       body: Player(),
     );
-    }
+  }
 }

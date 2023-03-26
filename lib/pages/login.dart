@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_end_project/pages/register.dart';
 
-
 class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -91,10 +90,13 @@ class Login extends StatelessWidget {
                     ),
                     SizedBox(height: 20.0),
                     TextButton(
-                      onPressed: () {Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => RegisterScreen()),
-                      );},
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RegisterScreen()),
+                        );
+                      },
                       child: Text(
                         "Don't have an account? Register",
                         style: TextStyle(

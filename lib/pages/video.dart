@@ -7,31 +7,31 @@ void main() {
 
 class AppRoot extends StatelessWidget {
   Widget build(BuildContext buildContext) => MaterialApp(
-    home: DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        body: TabBarView(
-          children: [
-            VideoWidget(),
-            Container(
-              child: Center(
-                child: Text('This is the second tab'),
-              ),
+        home: DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            body: TabBarView(
+              children: [
+                VideoWidget(),
+                Container(
+                  child: Center(
+                    child: Text('This is the second tab'),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-        appBar: AppBar(
-          bottom: TabBar(
-            tabs: [
-              Tab(icon: Icon(Icons.video_library)),
-              Tab(icon: Icon(Icons.description)),
-            ],
+            appBar: AppBar(
+              bottom: TabBar(
+                tabs: [
+                  Tab(icon: Icon(Icons.video_library)),
+                  Tab(icon: Icon(Icons.description)),
+                ],
+              ),
+              title: Text("Video afspelen"),
+            ),
           ),
-          title: Text("Video afspelen"),
         ),
-      ),
-    ),
-  );
+      );
 }
 
 class VideoWidget extends StatefulWidget {
@@ -76,23 +76,6 @@ class _VideoWidgetState extends State<VideoWidget>
         children: [
           VideoPlayer(_controller),
           VideoProgressIndicator(_controller, allowScrubbing: true),
-          // IconButton(
-          //   onPressed: () {
-          //     setState(() {
-          //       _isPlaying = !_isPlaying;
-          //       if (_isPlaying) {
-          //         _controller.play();
-          //       } else {
-          //         _controller.pause();
-          //       }
-          //     });
-          //   },
-          //   iconSize: 48.0,
-          //   icon: Icon(
-          //     _isPlaying ? Icons.pause : Icons.play_arrow,
-          //     color: Colors.white,
-          //   ),
-          // ),
         ],
       ),
     );
