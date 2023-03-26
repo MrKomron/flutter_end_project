@@ -46,11 +46,12 @@ class _PlayerState extends State<Player> {
     return Container(
       margin: const EdgeInsets.only(left: 10.0, right: 10.0, top: 5.0),
       padding: const EdgeInsets.only(top: 5.0),
-      decoration: BoxDecoration(border: Border.all()),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(1.0)),
       child: Column(
         children: [
           Container(
-            padding: const EdgeInsets.only(bottom: 5.0, left: 10.0, right: 10.0),
+
+            padding: const EdgeInsets.only(bottom: 5.0, left: 10.0, right: 10.0,),
             child: Row(children: [
               Expanded(
                 flex: 7,
@@ -63,7 +64,7 @@ class _PlayerState extends State<Player> {
                                 textScaleFactor: 1.2,
                                 text: TextSpan(
                                   text: track.title,
-                                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.w900),
+                                  style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w900),
                                 )))),
                     Expanded(
                         child: Container(
@@ -75,10 +76,13 @@ class _PlayerState extends State<Player> {
               ),
               Expanded(
                 flex: 2,
-                child: Container(
+               child: Container(
                   child: track.artwork,
+                  width: 120.0,
+                  height: 120.0,
                 ),
               ),
+
               Expanded(
                 child: Container(
                   child: IconButton(
@@ -109,8 +113,8 @@ class _PlayerState extends State<Player> {
                       });
                     },
                     icon: track.isPlaying ?
-                    Icon(Icons.pause, size: 40) :
-                    (track.hasStarted ? Icon(Icons.play_arrow, size: 40) : Icon(Icons.play_arrow, size: 40)),
+                    Icon(Icons.pause, size: 40,color: Colors.blue,) :
+                    (track.hasStarted ? Icon(Icons.play_arrow, size: 40, color: Colors.blue,) : Icon(Icons.play_arrow, size: 40,color: Colors.blue,)),
                   ),
                 ),
               )
