@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_end_project/authentication/profile_page.dart';
 import 'package:flutter_end_project/authentication/register_page.dart';
-
 import '../utils/fire_auth.dart';
 import '../utils/validator.dart';
 
@@ -52,138 +51,179 @@ class _LoginPageState extends State<LoginPage> {
         appBar: AppBar(
           title: Text('Login'),
         ),
-        body: FutureBuilder(
-          future: _initializeFirebase(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return Padding(
-                padding: const EdgeInsets.only(left: 24.0, right: 24.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 24.0),
-                      child: Text(
-                        'Login',
-                        style: Theme.of(context).textTheme.headline1,
-                      ),
-                    ),
-                    Form(
-                      key: _formKey,
+        body: Stack(
+          children: [
+            Positioned.fill(
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/logo.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
+            Center(
+              child:SingleChildScrollView(
+
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 10.0),
+                padding: EdgeInsets.all(20.0),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.9),
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                child: FutureBuilder(
+                future: _initializeFirebase(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 24.0, right: 24.0),
                       child: Column(
-                        children: <Widget>[
-                          TextFormField(
-                            controller: _emailTextController,
-                            focusNode: _focusEmail,
-                            validator: (value) => Validator.validateEmail(
-                              email: value,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'LOGIN',
+                            style: TextStyle(
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.bold,
                             ),
-                            decoration: InputDecoration(
-                              hintText: "Email",
-                              errorBorder: UnderlineInputBorder(
-                                borderRadius: BorderRadius.circular(6.0),
-                                borderSide: BorderSide(
-                                  color: Colors.red,
-                                ),
-                              ),
-                            ),
+                            textAlign: TextAlign.center,
                           ),
-                          SizedBox(height: 8.0),
-                          TextFormField(
-                            controller: _passwordTextController,
-                            focusNode: _focusPassword,
-                            obscureText: true,
-                            validator: (value) => Validator.validatePassword(
-                              password: value,
-                            ),
-                            decoration: InputDecoration(
-                              hintText: "Password",
-                              errorBorder: UnderlineInputBorder(
-                                borderRadius: BorderRadius.circular(6.0),
-                                borderSide: BorderSide(
-                                  color: Colors.red,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 24.0),
-                          _isProcessing
-                              ? CircularProgressIndicator()
-                              : Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: ElevatedButton(
-                                        onPressed: () async {
-                                          _focusEmail.unfocus();
-                                          _focusPassword.unfocus();
-
-                                          if (_formKey.currentState!
-                                              .validate()) {
-                                            setState(() {
-                                              _isProcessing = true;
-                                            });
-
-                                            User? user = await FireAuth
-                                                .signInUsingEmailPassword(
-                                              email: _emailTextController.text,
-                                              password:
-                                                  _passwordTextController.text,
-                                            );
-
-                                            setState(() {
-                                              _isProcessing = false;
-                                            });
-
-                                            if (user != null) {
-                                              Navigator.of(context)
-                                                  .pushReplacement(
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ProfilePage(user: user),
-                                                ),
-                                              );
-                                            }
-                                          }
-                                        },
-                                        child: Text(
-                                          'Sign In',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
+                          SizedBox(height: 50.0),
+                          Form(
+                            key: _formKey,
+                            child: Column(
+                              children: <Widget>[
+                                TextFormField(
+                                  controller: _emailTextController,
+                                  focusNode: _focusEmail,
+                                  validator: (value) => Validator.validateEmail(
+                                    email: value,
+                                  ),
+                                  decoration: InputDecoration(
+                                    labelText: 'Email',
+                                    labelStyle: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.grey[800],
                                     ),
-                                    SizedBox(width: 24.0),
-                                    Expanded(
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  RegisterPage(),
+                                    filled: true,
+                                    fillColor: Colors.grey[200],
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 8.0),
+                                TextFormField(
+                                  controller: _passwordTextController,
+                                  focusNode: _focusPassword,
+                                  obscureText: true,
+                                  validator: (value) => Validator.validatePassword(
+                                    password: value,
+                                  ),
+                                  decoration: InputDecoration(
+                                    labelText: 'Password',
+                                    labelStyle: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.grey[800],
+                                    ),
+                                    filled: true,
+                                    fillColor: Colors.grey[200],
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 24.0),
+                                _isProcessing
+                                    ? CircularProgressIndicator()
+                                    : Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Expanded(
+                                            child: ElevatedButton(
+                                              onPressed: () async {
+                                                _focusEmail.unfocus();
+                                                _focusPassword.unfocus();
+
+                                                if (_formKey.currentState!
+                                                    .validate()) {
+                                                  setState(() {
+                                                    _isProcessing = true;
+                                                  });
+
+                                                  User? user = await FireAuth
+                                                      .signInUsingEmailPassword(
+                                                    email: _emailTextController.text,
+                                                    password:
+                                                        _passwordTextController.text,
+                                                  );
+
+                                                  setState(() {
+                                                    _isProcessing = false;
+                                                  });
+
+                                                  if (user != null) {
+                                                    Navigator.of(context)
+                                                        .pushReplacement(
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            ProfilePage(user: user),
+                                                      ),
+                                                    );
+                                                  }
+                                                }
+                                              },
+                                              child: Text(
+                                                'Sign In',
+                                                style: TextStyle(color: Colors.white),
+                                              ),
                                             ),
-                                          );
-                                        },
-                                        child: Text(
-                                          'Register',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                )
+                                          ),
+                                          SizedBox(width: 24.0),
+                                          Expanded(
+                                            child: ElevatedButton(
+                                              onPressed: () {
+                                                Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        RegisterPage(),
+                                                  ),
+                                                );
+                                              },
+                                              child: Text(
+                                                'Register',
+                                                style: TextStyle(color: Colors.white),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                              ],
+                            ),
+                          )
                         ],
                       ),
-                    )
-                  ],
-                ),
-              );
-            }
+                    );
+                  }
 
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          },
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+          ),
+              ),
+            ),
+            ),
+          ],
         ),
       ),
     );
