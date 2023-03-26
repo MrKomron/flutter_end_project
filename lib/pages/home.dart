@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
             VideoWidget(),
             SizedBox(height: 20.0),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30.0,vertical: 50),
+              padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 50),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -62,54 +62,143 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
+            Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          'https://mediglobus.com/wp-content/uploads/2017/08/kos-hospital7.jpg',
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    width: 300.0,
+                    height: 300.0,
+                  ),
+                  SizedBox(height: 10.0),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          'https://1.bp.blogspot.com/-nSny_N8FBb4/Xp6NKdbHrQI/AAAAAAAALgw/ohIQtGLmwq0qZ4WC-espdQ6G3oOyZm9mQCLcBGAsYHQ/s1600/CAH_1.3-min.jpg',
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    width: 300.0,
+                    height: 300.0,
+                  ),
+                  SizedBox(height: 10.0),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          'https://myhomeopat.ru/wp-content/uploads/2016/11/Depositphotos_10642817_original-1.jpg',
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    width: 300.0,
+                    height: 300.0,
+                  ),
+                  SizedBox(height: 10.0),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          'https://i.pinimg.com/originals/79/46/55/79465580fbc67476f1b6aee1ad6e4bd7.jpg',
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    width: 300.0,
+                    height: 300.0,
+                  ),
+                  SizedBox(height: 10.0),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          'https://kartinkin.net/uploads/posts/2022-03/1646709544_74-kartinkin-net-p-kartinki-poliklinika-80.jpg',
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    width: 300.0,
+                    height: 300.0,
+                  ),
+                  SizedBox(height: 10.0),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          'https://image.winudf.com/v2/image1/Y29tLmFrc2hhci5ob3NwaXRhbF9zY3JlZW5fMTRfMTU2NzEwMjE4OF8wMTM/screen-14.jpg?fakeurl=1&type=.jpg',
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    width: 300.0,
+                    height: 300.0,
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
     );
   }
 
-  Widget _buildServiceItem(BuildContext context, IconData icon, String title, String description) {
-    return  Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 10,
-              offset: Offset(0, 3),
+  Widget _buildServiceItem(
+      BuildContext context, IconData icon, String title, String description) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 10,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            icon,
+            size: 48.0,
+            color: Theme.of(context).primaryColor,
+          ),
+          SizedBox(height: 10.0),
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
             ),
-          ],
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-
-          children: [
-            Icon(
-              icon,
-              size: 48.0,
-              color: Theme.of(context).primaryColor,
+          ),
+          SizedBox(height: 5.0),
+          Text(
+            description,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 14.0,
             ),
-            SizedBox(height: 10.0),
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 5.0),
-            Text(
-              description,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 14.0,
-              ),
-            ),
-          ],
-        ),
-      );
-
+          ),
+        ],
+      ),
+    );
   }
 }

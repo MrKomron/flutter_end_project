@@ -62,6 +62,7 @@ class _ContactPageState extends State<ContactPage> {
               'Phone',
               style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
             ),
+
           ),
           Center(child: SizedBox(height: 8.0)),
           Center(
