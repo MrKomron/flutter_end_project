@@ -7,6 +7,7 @@ import './pages/team.dart';
 import './pages/meditaion.dart';
 import './pages/login.dart';
 import './pages/contact.dart';
+import 'authentication/login_page.dart';
 
 Future <void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -86,7 +87,7 @@ class MedicalCenter extends StatelessWidget {
               children: [
                 HomePage(),
                 Team(),
-                Login(),
+                LoginPage(),
                 ContactPage(),
                 Meditaion(),
               ],
