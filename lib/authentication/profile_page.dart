@@ -30,17 +30,13 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         title: Center(child: Text('Profile')),
       ),
-      body: Center(
-        child: Column(
+      body:  Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               'NAME: ${_currentUser.displayName}',
               style: Theme.of(context).textTheme.bodyText1,
             ),
-
-
-
             SizedBox(height: 16.0),
             _isSigningOut
                 ? CircularProgressIndicator()
@@ -67,9 +63,19 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                   ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 0,horizontal: 1),
+              child: Center(
+                child: Text(
+                  'Dear: ${_currentUser.displayName}. You have an appointment on Wednesday(5/03/2023) with plastic surgeon',
+
+
+
+                ),
+              ),
+            ),
           ],
         ),
-      ),
-    );
+      );
   }
 }
